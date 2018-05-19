@@ -13,6 +13,27 @@
         $.ajax({
             url: "test.php",
             type: "GET",
+            data: "a=10&b=20",
+            //data: {a:11, b:22},
+            success: function(result){
+                alert(result);
+            }
+        });
+    });
+
+
+
+</script>
+
+
+
+<!--<script type="text/javascript">
+
+    $("document").ready(function(){
+
+        $.ajax({
+            url: "test.php",
+            type: "GET",
             success: function(){
                 alert("Запрос произошел успешно");
             },
@@ -30,7 +51,7 @@
 
     });
 
-</script>
+</script>-->
 </head>
 <body>
 
