@@ -8,28 +8,40 @@
 
 <script type="text/javascript">
 
-    $("document").ready(function(){
+$("document").ready(function(){
+
+    $.ajax({
+        url: "test.php",
+        type: "GET",
+        success: function(responce){
+            //alert(responce);
+            var obj = jQuery.parseJSON(responce);
+            alert(obj.a + ", " + obj.b + ", " + obj.c)
+        }
+    });
+});
+
+ /*   $("#send").click(function(){
+
+        var send = $("form").serializeArray();
+        var send ={};
+        send['a'] = $("#one").text();
+        send['b'] = $("#two").text();
 
         $.ajax({
             url: "test.php",
             type: "GET",
-            data: "a=10&b=20",
+            //data: "a=10&b=20",
             //data: {a:11, b:22},
-            success: function(result){
-                alert(result);
+            data: send,
+            success: function(response){
+                alert(response);
             }
         });
     });
+});
 
-
-
-</script>
-
-
-
-<!--<script type="text/javascript">
-
-    $("document").ready(function(){
+   $("document").ready(function(){
 
         $.ajax({
             url: "test.php",
@@ -48,14 +60,25 @@
             }
 
         })
+*/
 
-    });
 
-</script>-->
+</script>
 </head>
 <body>
 
+<!--<p id="one">30</p>
+<p id="two">40</p>
+-->
+<!--
+    <form>
+        Название новости <br />
+        <input type="text" name="title"/> <br />
+        Дата <br />
+        <input type="text" name="date"/> <br /> <br />
 
-
+        <input type="button" id="send" value="Отправить"/>
+    </form>
+-->
 </body>
 </html>
