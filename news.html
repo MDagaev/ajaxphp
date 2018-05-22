@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html"; charset="utf-8">
+    <title></title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+
+    <script type="text/javascript">
+        $("document").ready(function(){
+
+            var ids = [];
+
+            getNews();
+
+            setInterval(function(){
+                getNews();
+            }, 10000);
+
+            function getNews(){
+               $.ajax({
+                   url: 'get.php',
+                   type: 'POST',
+                   success: function(ansdata){
+                       ansdata = jQuery.parseJSON(ansdata);
+
+                       $.each(ansdata, function(i, item){
+                           if (jQuery.inArray(item.id, ids) == -1){
+                                ids.push(item.id);
+                                $("#container").prepend("<h1>" + item.title + "</h1><p>" + item.text + "</p>");
+                           }
+                       });
+                   }
+                });
+            }
+        });
+
+    </script>
+</head>
+<body>
+    <div id="container"></div>
+
+</body>
+</html>
